@@ -22,14 +22,9 @@ var ModelsPlugin = {
 
 lab.before(function (done) {
 
-    var plugins = [HapiAuth, ModelsPlugin, AuthPlugin, LoginPlugin];
+    var plugins = [require('vision'), HapiAuth, ModelsPlugin, AuthPlugin, LoginPlugin];
     server = new Hapi.Server();
     server.connection({ port: Config.get('/port/web') });
-    server.views({
-        engines: { jsx: require('hapi-react-views') },
-        path: './server/web',
-        relativeTo: Path.join(dir, '..', '..', '..')
-    });
     server.register(plugins, function (err) {
 
         if (err) {
@@ -37,6 +32,11 @@ lab.before(function (done) {
         }
 
         done();
+    });
+    server.views({
+        engines: { jsx: require('hapi-react-views') },
+        path: './server/web',
+        relativeTo: Path.join(dir, '..', '..', '..')
     });
 });
 

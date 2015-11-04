@@ -1,4 +1,5 @@
-var React = require('react/addons');
+var React = require('react');
+var ReactDOM = require('react-dom');
 var RouterTestLocation = require('react-router/lib/locations/TestLocation');
 var Lab = require('lab');
 var Code = require('code');
@@ -41,7 +42,7 @@ lab.before(function (done) {
 
 lab.after(function (done) {
 
-    React.unmountComponentAtNode(mountNode);
+    ReactDOM.unmountComponentAtNode(mountNode);
     global.document.body.removeChild(mountNode);
     delete global.window.app;
 

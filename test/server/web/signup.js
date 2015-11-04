@@ -12,14 +12,9 @@ var request, server;
 
 lab.beforeEach(function (done) {
 
-    var plugins = [SignupPlugin];
+    var plugins = [require('vision'), SignupPlugin];
     server = new Hapi.Server();
     server.connection({ port: Config.get('/port/web') });
-    server.views({
-        engines: { jsx: require('hapi-react-views') },
-        path: './server/web',
-        relativeTo: Path.join(__dirname, '..', '..', '..')
-    });
     server.register(plugins, function (err) {
 
         if (err) {
@@ -27,6 +22,11 @@ lab.beforeEach(function (done) {
         }
 
         done();
+    });
+    server.views({
+        engines: { jsx: require('hapi-react-views') },
+        path: './server/web',
+        relativeTo: Path.join(__dirname, '..', '..', '..')
     });
 });
 

@@ -20,14 +20,9 @@ var ModelsPlugin = {
 
 lab.beforeEach(function (done) {
 
-    var plugins = [HapiAuth, ModelsPlugin, AuthPlugin, AccountPlugin];
+    var plugins = [require('vision'), HapiAuth, ModelsPlugin, AuthPlugin, AccountPlugin];
     server = new Hapi.Server();
     server.connection({ port: Config.get('/port/web') });
-    server.views({
-        engines: { jsx: require('hapi-react-views') },
-        path: './server/web',
-        relativeTo: Path.join(__dirname, '..', '..', '..')
-    });
     server.register(plugins, function (err) {
 
         if (err) {
@@ -35,6 +30,11 @@ lab.beforeEach(function (done) {
         }
 
         done();
+    });
+    server.views({
+        engines: { jsx: require('hapi-react-views') },
+        path: './server/web',
+        relativeTo: Path.join(__dirname, '..', '..', '..')
     });
 });
 

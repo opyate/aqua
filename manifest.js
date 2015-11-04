@@ -29,7 +29,9 @@ var manifest = {
         'crumb': {
             restful: true
         },
+        'inert': {},
         'lout': {},
+        'vision': {},
         'visionary': {
             engines: {
                 jsx: 'hapi-react-views'

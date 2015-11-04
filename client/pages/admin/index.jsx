@@ -1,5 +1,5 @@
 /* global window */
-var React = require('react/addons');
+var ReactDOM = require('react-dom');
 var ReactRouter = require('react-router');
 var Routes = require('./Routes');
 
@@ -14,7 +14,7 @@ var App = {
 
         ReactRouter.run(Routes, HistoryLocation, function (Handler) {
 
-            self.mainElement = React.render(
+            self.mainElement = ReactDOM.render(
                 <Handler />,
                 window.document.getElementById('app-mount')
             );
